@@ -1,0 +1,123 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:tab="sap.ui.table">
+	<Dialog title="{i18n>settings}" id="viewSettingsDialog" contentHeight="700px" contentWidth="900px">
+		<IconTabBar id="settingTabBar" expanded="{device>/isNoPhone}" expandable="false" class="sapUiResponsiveContentPadding">
+			<items>
+				<IconTabFilter text="{i18n>general_settings}">
+					<l:VerticalLayout class="sapUiContentPadding" width="100%">
+						<l:content>
+							<Label text="{i18n>change_icon_title}" design="Bold"/>
+							<u:FileUploader id="newImageUploader" width="500px" uploadComplete="handleUploadComplete" uploadOnChange="false" sendXHR="true"
+								useMultipart="false" typeMissmatch="handleTypeMissmatch" style="Emphasized" fileType="jpg,png" mimeType="image/png,image/jpeg"
+								placeholder="{i18n>fileuploader_placeholder}"></u:FileUploader>
+							<Label text="" design="Bold"/>
+							<Label text="{i18n>preferences}" design="Bold" class="sapUiSmallMarginTop"/>
+							<FlexBox alignItems="Center" alignContent="Center" justifyContent="Inherit">
+								<items>
+									<Switch id="showLastCycleSwitch" state="true" type="AcceptReject" tooltip="{i18n>last_cycle_check}"/>
+									<Label text="{i18n>last_cycle_check}" class="sapUiTinyMarginBegin"/>
+								</items>
+							</FlexBox>
+							<FlexBox alignItems="Center" alignContent="Center" justifyContent="Inherit">
+								<items>
+									<Switch id="saveOtherFiltersCycleSwitch" state="true" type="AcceptReject" tooltip="{i18n>save_filters_check}"/>
+									<Label text="{i18n>save_filters_check}" class="sapUiTinyMarginBegin"/>
+								</items>
+							</FlexBox>
+							<FlexBox alignItems="Center" alignContent="Center" justifyContent="Inherit">
+								<items>
+									<Switch id="showRetrofitWarningsSwitch" type="AcceptReject" tooltip="{i18n>show_retrofit_alerts}"/>
+									<Text text="{i18n>show_retrofit_alerts_msg}" class="sapUiTinyMarginBegin"/>
+								</items>
+							</FlexBox>
+							<FlexBox alignItems="Center" alignContent="Center" justifyContent="Inherit">
+								<items>
+									<Switch id="showToCsSwitch" type="AcceptReject" tooltip="{i18n>show_tocs}"/>
+									<Text text="{i18n>show_tocs}" class="sapUiTinyMarginBegin"/>
+								</items>
+							</FlexBox>
+							<Label text="{i18n>included_types}" design="Bold" class="sapUiSmallMarginTop"/>
+							<FlexBox alignItems="Center" alignContent="Center" justifyContent="Inherit">
+								<items>
+									<Switch id="includeDefectsSwitch" state="true" type="AcceptReject" tooltip="{i18n>defect_corrections}"/>
+									<Label text="{i18n>defect_corrections}" class="sapUiTinyMarginBegin"/>
+								</items>
+							</FlexBox>
+							<FlexBox alignItems="Center" alignContent="Center" justifyContent="Inherit">
+								<items>
+									<Switch id="includeUrgentsSwitch" state="true" type="AcceptReject" tooltip="{i18n>urgent_changes}"/>
+									<Label text="{i18n>urgent_changes}" class="sapUiTinyMarginBegin"/>
+								</items>
+							</FlexBox>
+							<Label text="{i18n>charm_config}" design="Bold" class="sapUiSmallMarginTop"/>
+							<RadioButtonGroup id="charmConfigurationRadioGroup" columns="2">
+								<buttons>
+									<RadioButton id="radioConfig1" text="{i18n>config1}"/>
+									<RadioButton id="radioConfig2" text="{i18n>config2}"/>
+								</buttons>
+							</RadioButtonGroup>
+						</l:content>
+					</l:VerticalLayout>
+				</IconTabFilter>
+				<IconTabFilter text="{i18n>retrofit_settings}" visible="false">
+					<l:VerticalLayout class="sapUiContentPadding" width="100%">
+						<l:content>
+							<FlexBox alignItems="Center" alignContent="Center" justifyContent="Inherit">
+								<items>
+									<MessageStrip class="sapUiSmallMarginBottom" text="{i18n>clean_up_tocs}" showIcon="true"/>
+								</items>
+							</FlexBox>
+							<tab:Table id="devSystemsTable" rows="{ path:'DevSystems>/' }" selectionMode="None" enableColumnReordering="false" visibleRowCount="2"
+								enableSelectAll="false" ariaLabelledBy="title" class="sapUiTinyMarginTop">
+								<tab:columns>
+									<tab:Column width="12rem">
+										<Label text="{i18n>solution}"/>
+										<tab:template>
+											<Text text="{DevSystems>Solution}" wrapping="false"/>
+										</tab:template>
+									</tab:Column>
+									<tab:Column>
+										<Label text="{i18n>release_landscape}"/>
+										<tab:template>
+											<Label text="{DevSystems>CCL}"/>
+										</tab:template>
+									</tab:Column>
+									<tab:Column width="7rem" hAlign="Center">
+										<Label text="{i18n>dev_system}"/>
+										<tab:template>
+											<Label text="{DevSystems>DevSystem}"/>
+										</tab:template>
+									</tab:Column>
+									<tab:Column width="10rem" hAlign="Center">
+										<Label text="{i18n>last_execution}"/>
+										<tab:template>
+											<Label text="{DevSystems>LastExecution}"/>
+										</tab:template>
+									</tab:Column>
+									<tab:Column width="7rem" hAlign="Center">
+										<Label text="{i18n>clean_active}"/>
+										<tab:template>
+											<CheckBox selected="{=${DevSystems>CleanActive} === 'X' ? true : false}" select="onSelectCleanToCsInSystem"/>
+										</tab:template>
+									</tab:Column>
+								</tab:columns>
+							</tab:Table>
+							<FlexBox alignItems="Center" alignContent="Center" justifyContent="Inherit" class="sapUiTinyMarginTop">
+								<items>
+									<Switch id="showCleanToCsWarningsSwitch" type="AcceptReject" tooltip="{i18n>show_cleanup_tocs_alert}"/>
+									<Text text="{i18n>show_cleanup_tocs_alert}" class="sapUiTinyMarginBegin"/>
+								</items>
+							</FlexBox>
+						</l:content>
+					</l:VerticalLayout>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+		<beginButton>
+			<Button text="{i18n>save_action}" press="onConfirmViewSettingsDialog"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>cancel_action}" press="onCloseViewSettingsDialog"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

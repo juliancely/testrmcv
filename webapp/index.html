@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta charset="UTF-8">
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+
+		<title>Release Management Cockpit</title>
+		<link rel="icon" type="image/gif" href="http://ovee.fr/wp-content/uploads/2015/12/Ovee_Logo_small.png" />
+
+		<!--previous:-->
+		<!--src="../../resources/sap-ui-core.js"-->
+		<script id="sap-ui-bootstrap"
+			src="https://sapui5.hana.ondemand.com/1.52.4/resources/sap-ui-core.js"
+			data-sap-ui-libs="sap.ui.table,sap.ui.commons,sap.m,sap.tnt,sap.ui.comp,sap.chart"
+			data-sap-ui-theme="sap_belize_plus"
+	        data-sap-ui-async="true"
+			data-sap-ui-compatVersion="edge"
+			
+			data-sap-ui-resourceroots='{"releasemanagementcockpit": ""}'>
+		</script>
+
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+
+		<script>
+			var Component = sap.ui.core.Component.extend("ReleaseManagementCockpitComponent", {});
+	        var oComponent = new Component("MainComponent");
+	        oComponent.runAsOwner(function() {
+	          var view = sap.ui.view({viewName:"releasemanagementcockpit.view.MainView", type:sap.ui.core.mvc.ViewType.JS });
+	          view.placeAt("content");
+	        });
+		</script>
+	</head>
+
+	<body class="sapUiBody" id="content">
+	</body>
+
+</html>

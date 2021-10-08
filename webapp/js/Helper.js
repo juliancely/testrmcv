@@ -1,0 +1,56 @@
+jQuery.sap.declare("releasemanagementcockpit.js.Helper");
+sap.ui.base.Object.extend("releasemanagementcockpit.js.Helper", {});
+//&nbsp;
+
+//===================== Constants ==================================================================
+//==================================================================================================
+
+releasemanagementcockpit.js.Helper.ODATA_PROVIDER = "sap/opu/odata/sap/ZSM_RM_COCKPIT_V2_SRV";
+releasemanagementcockpit.js.Helper.SET_LOGO_1 = "/UserSet('";
+releasemanagementcockpit.js.Helper.SET_LOGO_2 = "')/UserToLogos";
+releasemanagementcockpit.js.Helper.GET_LOGO_1 = "/LogoSet('";
+releasemanagementcockpit.js.Helper.GET_LOGO_2 = "')/$value";
+releasemanagementcockpit.js.Helper.GET_CHANGE_CYC = "/ChangeCycleSet";
+releasemanagementcockpit.js.Helper.GET_CHANGE_CYC_INFO = "/GetCycleInfo";
+releasemanagementcockpit.js.Helper.GET_CHANGE_DOC = "/ChangeDocumentSet";
+releasemanagementcockpit.js.Helper.GET_CHANGE_CYC_PH = "/ChangeCyclePhaseSet";
+releasemanagementcockpit.js.Helper.GET_CD_OT = "/TransportOrderSet";
+releasemanagementcockpit.js.Helper.GET_LOG = "/LogDetailsSet";
+releasemanagementcockpit.js.Helper.GET_DEBUG_LOG = "/DebugLogDetailsSet";
+releasemanagementcockpit.js.Helper.GET_CUTOVER_CHECKS_CYCLE = "/CutoverChecksCycleSet";
+releasemanagementcockpit.js.Helper.GET_CUTOVER_POST_ACTIVITIES = "/CutoverPostActivitiesSet";
+releasemanagementcockpit.js.Helper.GET_CUTOVER_POST_ACT_SYSTEMS = "/CutoverPostActSystemSet";
+releasemanagementcockpit.js.Helper.GET_SIMULATION_TRS = "/SimulationTRSet";
+releasemanagementcockpit.js.Helper.LOG_ON_SYSTEM = "/LogOnSystem";
+releasemanagementcockpit.js.Helper.GET_KEY_VALUE_ENTITIES = "/KeyValueEntitySet";
+releasemanagementcockpit.js.Helper.GET_USER = "/Login";
+releasemanagementcockpit.js.Helper.ADD_COMMENT = "/AddComments";
+releasemanagementcockpit.js.Helper.ADD_FAV = "/AddFavorites";
+releasemanagementcockpit.js.Helper.TASKLIST = "/Tasklist";
+releasemanagementcockpit.js.Helper.TICKET = "/Ticket";
+releasemanagementcockpit.js.Helper.APPROVE = "/Approve";
+releasemanagementcockpit.js.Helper.CHECK_RETROFITED = "/CheckRetrofited";
+releasemanagementcockpit.js.Helper.CHECK_RETROFIT_BEFORE_ONHOLD = "/CheckRetroBeforeOnHold";
+releasemanagementcockpit.js.Helper.START_RETROFIT = "/StartRetrofit";
+releasemanagementcockpit.js.Helper.PERFORM_CUTOVER_CHECKS = "/PerformCutoverChecks";
+releasemanagementcockpit.js.Helper.PERFORM_POST_CUTOVER_ACTIVITIES = "/PerformPostCutoverActivities";
+releasemanagementcockpit.js.Helper.SAVE_PREFERENCES = "/SavePreferences";
+releasemanagementcockpit.js.Helper.POSTPONE = "/Postpone";
+releasemanagementcockpit.js.Helper.CANDIDATE = "/Candidate";
+releasemanagementcockpit.js.Helper.RELEASE = "/Release";
+releasemanagementcockpit.js.Helper.CLOSE = "/Close";
+releasemanagementcockpit.js.Helper.SHIFT = "/Shift";
+releasemanagementcockpit.js.Helper.JOB_INFOS = "/GetJobInfos";
+releasemanagementcockpit.js.Helper.TR_SHORTCUT = "/createShorcut";
+releasemanagementcockpit.js.Helper.SEND_EMAIL = "/SendEmail";
+releasemanagementcockpit.js.Helper.SYN_TR = "/SynchroTr";
+releasemanagementcockpit.js.Helper.REF_TR = "/RefreshTr";
+releasemanagementcockpit.js.Helper.SWITCH_CH = "/SwitchChange";
+releasemanagementcockpit.js.Helper.GET_CHANGE_CYCLE_KPI = "/getKpiChangeCycle";
+releasemanagementcockpit.js.Helper.GET_LAND_BRA = "/LandscapeSet";
+releasemanagementcockpit.js.Helper.ALL = "ALL";
+releasemanagementcockpit.js.Helper.REL = "REL";
+releasemanagementcockpit.js.Helper.RET = "RET";
+releasemanagementcockpit.js.Helper.CAN = "CAN";
+releasemanagementcockpit.js.Helper.REPORT = "'ZCRM_SOCM_SERVICE_REPORT'";
+releasemanagementcockpit.js.Helper.GET_RETROFIT_DEV_SYSTEMS = "/RetrofitDevSystemSet";

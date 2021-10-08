@@ -1,0 +1,67 @@
+@CHARSET "ISO-8859-1";
+
+#mainShell-header-icon{
+  width : 335px;
+  max-width : 335px;
+}
+.sapMIBar .sapMBarChild {
+    vertical-align: middle;
+}
+.sapContrastPlus .sapMInputBaseContentWrapperSuccess {
+    background: #495e70;
+    border-color: #91c8f6;
+}
+.sapMCbBg.sapMCbMarkChecked:before {
+    color: #91c8f6;
+}
+.sapTntNavLIItem>.sapUiIcon {
+    color: #91c8f6;
+}
+#changeCycleBar{
+    margin-left: 0.25rem;
+    /*margin-top: 0.2rem;*/
+}
+#imageProfile {
+    margin-top: -0.4rem;
+}
+#userButton {
+    margin-top: -0.4rem;
+}
+#__shell0-header-hdr-begin{
+  width : 335px;
+  max-width : 335px;
+}
+#mainShell-header-hdr-begin{
+  width : 335px;
+  max-width : 335px;
+}
+#Mainfooter{
+  border-top: #e2e9ef;
+  border-top-width: 4px;
+  border-top-style: ridge;
+}
+#__shell0-header-icon{
+	  width : 335px;
+  max-width : 335px;
+}
+#changeCycleBar{
+	border : none;
+	background-color : "aliceblue";
+}
+section[id*="__page"][id*="-cont"] {
+    height: auto !important;
+}
+.labelCenter{
+  margin-top: 15px;
+}
+.changeCycleBar{
+  padding-bottom: 3px;
+}
+.menuButtonMaxWidth{
+  max-width : 400px;
+  width : 330px;
+}
+.menuButtonMaxWidth2{
+  max-width : 400px;
+  width : 250px;
+}

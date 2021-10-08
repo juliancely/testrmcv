@@ -1,0 +1,67 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:com="sap.suite.ui.commons" xmlns:tab="sap.ui.table" xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog title="{i18n>cutover_activities_title}" id="CutoverActivitiesView" contentHeight="350px" contentWidth="1100px">
+		
+		<tab:TreeTable id="ActivitiesTable" selectionMode="MultiToggle" enableSelectAll="false" visibleRowCountMode="Auto" minAutoRowCount="8" selectionBehavior="RowSelector" enableColumnReordering="false" rowSelectionChange="onActivitySelectionChange">
+			<tab:columns>
+				<tab:Column width="5rem" hAlign="Center">
+					<Text text="{i18n>col_system}"/>
+					<tab:template>
+						<Text text="{System}"/>
+					</tab:template>
+				</tab:Column>
+				<tab:Column width="4rem" hAlign="Center">
+					<Text text="{i18n>col_client}"/>
+					<tab:template>
+						<Text text="{Client}"/>
+					</tab:template>
+				</tab:Column>
+				<tab:Column width="12rem">
+					<Text text="{i18n>col_role}"/>
+					<tab:template>
+						<Text text="{Role}"/>
+					</tab:template>
+				</tab:Column>
+				<tab:Column width="4.5rem" hAlign="Center">
+					<Text text="{i18n>col_logon}"/>
+					<tab:template>
+						<core:Icon src="sap-icon://customer" color="#8875E7" press="onPressLogOnSystem" app:system="{System}" app:client="{Client}" visible="{= ${System} !== undefined }"/>
+					</tab:template>
+				</tab:Column>
+				<tab:Column width="4rem" hAlign="Center">
+					<Text text="{i18n>col_status}"/>
+					<tab:template>
+						<ObjectStatus icon="{ExecIcon}" state="{ExecStatus}" tooltip="{ExecStatusTxt}"/>
+					</tab:template>
+				</tab:Column>
+				<tab:Column width="15rem">
+					<Text text="{i18n>col_act_title}"/>
+					<tab:template>
+						<Text text="{Title}"/>
+					</tab:template>
+				</tab:Column>
+				<tab:Column width="3rem" hAlign="Center">
+					<Text text="{i18n>col_info}"/>
+					<tab:template>
+						<core:Icon src="sap-icon://message-information" color="#8875E7" press="onPressCutoverActivityInfo" app:title="{Title}" app:description="{Description}" visible="{= ${Title} !== undefined }"/>
+					</tab:template>
+				</tab:Column>
+				<tab:Column>
+					<Text text="{i18n>col_message}"/>
+					<tab:template>
+						<HBox>
+							<Text text="{Message}" visible="{= ${ActivityType} !== '050' || ${ExecStatus} !== 'Success' }"/>
+							<Link text="{i18n>download_tr_list}" visible="{= ${ActivityType} === '050' &amp;&amp; ${ExecStatus} === 'Success' }" press="onDownloadSimulatedTRList"/>
+						</HBox>
+					</tab:template>
+				</tab:Column>
+		    </tab:columns>
+        </tab:TreeTable>
+		<buttons>
+			<Button text="{i18n>perform_activity}" press="onPerformCutoverActivity"/>
+			<Button text="{i18n>refresh}" press="onRefreshCutoverActivities"/>
+			<Button text="{i18n>close_action}" press="onCloseCutoverActivitiesView"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>version_details}" id="versionDetailsView" contentHeight="240px" contentWidth="650px">
+		<l:VerticalLayout width="90%" class="sapUiMediumMarginBeginEnd sapUiMediumMarginTopBottom">
+			<l:content>
+				<FormattedText htmlText="{i18n>version_title}" class="sapUiMediumMarginBottom"/>
+				<FormattedText htmlText="{i18n>version_details_text}" class="sapUiMediumMarginBottom"/>
+				<!--<FormattedText htmlText="{i18n>version_text_link}"/>-->
+			</l:content>
+		</l:VerticalLayout>
+		<beginButton>
+			<Button text="{i18n>close_action}" press="onCloseVersionDetails"/>
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

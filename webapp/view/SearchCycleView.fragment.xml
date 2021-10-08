@@ -1,0 +1,81 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:table="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>change_cycle_id}" id="viewChangeCycleDialog" contentWidth="1000px">
+		<Panel backgroundDesign="Transparent" expandable="true" expanded="true" headerText="{i18n>filters_title1}" width="auto"
+			class="sapUiResponsiveMargin">
+			<content>
+				<FlexBox alignItems="Start" justifyContent="SpaceAround">
+					<items>
+						<Input id="inputCycleId" submit="onLaunchCycleSearch" type="Text" placeholder="{i18n>change_cycle_id}" width="350px"/>
+						<Input id="inputCycleDesc" submit="onLaunchCycleSearch" type="Text" placeholder="{i18n>change_cycle_desc}" width="350px"/>
+					</items>
+				</FlexBox>
+				<FlexBox alignItems="Start" justifyContent="SpaceAround">
+					<items>
+						<ComboBox id="comboLandscape" placeholder="{i18n>change_cycle_landscape}" change="onLaunchCycleSearch" selectionChange="onLandscapeChange"
+							width="350px">
+							<core:ListItem key="{slanID}" text="{slanDesc}"/>
+						</ComboBox>
+						<ComboBox id="comboBranch" change="onLaunchCycleSearch" placeholder="{i18n>change_cycle_branch}" width="350px" showSecondaryValues="false">
+							<core:ListItem key="{sbraID}" text="{sbraDesc}"/>
+						</ComboBox>
+					</items>
+				</FlexBox>
+				<FlexBox alignItems="Start" justifyContent="SpaceAround">
+					<items>
+						<ComboBox id="comboCycleType" change="onLaunchCycleSearch" placeholder="{i18n>change_cycle_type}" selectionChange="onCycleTypeChange"
+							width="350px">
+							<core:Item key="ALL" text=""/>
+							<core:Item key="SMIM" text="{i18n>cycle_type1}"/>
+							<core:Item key="SMRE" text="{i18n>cycle_type2}"/>
+							<core:Item key="SMAI" text="{i18n>cycle_type3}"/>
+						</ComboBox>
+						<ComboBox id="comboCycleStatus" change="onLaunchCycleSearch" placeholder="{i18n>change_cycle_status}" width="350px"
+							showSecondaryValues="false">
+							<core:ListItem key="{KEY}" text="{TEXT}"/>
+						</ComboBox>
+					</items>
+				</FlexBox>
+			</content>
+		</Panel>
+		<Panel expandable="true" expanded="true" headerText="{i18n>filters_title2}" width="auto" class="sapUiResponsiveMargin">
+			<content>
+				<CheckBox id="onlyFavoriteCheck" text="{i18n>only_fav}" select="onChangeCheckCycleSetting"/>
+				<CheckBox id="onlyOpenCCCheck" text="{i18n>only_open}" select="onChangeCheckCycleSetting"/>
+			</content>
+		</Panel>
+		<Panel expandable="false" width="auto" class="sapUiResponsiveMargin">
+			<Button text="{i18n>launch_action}" press="onLaunchCycleSearch"/>
+		</Panel>
+		<table:Table id="changeCycleTable" selectionBehavior="RowOnly" ariaLabelledBy="SearchTableLabel" rowSelectionChange="onRowSelectionChange">
+			<table:columns>
+				<table:Column id="idColumn" label="{i18n>change_cycles_tab_col_1}" sortProperty="ID" filterProperty="ID" width="15%">
+					<table:template><Text text="{ID}"/></table:template>
+				</table:Column>
+				<table:Column id="typeColumn" label="{i18n>change_cycles_tab_col_2}" sortProperty="TYPE" filterProperty="TYPE" width="15%">
+					<table:template><Text text="{TYPE}"/></table:template>
+				</table:Column>
+				<table:Column id="branchColumn" label="{i18n>change_cycles_tab_col_b}" sortProperty="BRANCH" filterProperty="BRANCH" width="15%">
+					<table:template><Text text="{BRANCH}"/></table:template>
+				</table:Column>
+				<table:Column id="phaseColumn" label="{i18n>change_cycles_tab_col_3}" sortProperty="PHASE" filterProperty="PHASE" width="15%">
+					<table:template><Text text="{PHASE}"/></table:template>
+				</table:Column>
+				<table:Column id="descColumn" label="{i18n>change_cycles_tab_col_4}" sortProperty="DESC" filterProperty="DESC" width="50%">
+					<table:template><Text text="{DESC}"/></table:template>
+				</table:Column>
+				<table:Column id="favColumn" label="{i18n>change_cycles_tab_col_5}" sortProperty="" filterProperty="" width="10%">
+					<table:template>
+						<Panel class="sapUiNoContentPadding" backgroundDesign="Transparent">
+							<ObjectMarker type="{FAV}" press="switchFavorites"/>
+						</Panel>
+					</table:template>
+				</table:Column>
+			</table:columns>
+		</table:Table>
+		<buttons>
+			<Button id="resetButton" text="{i18n>reset_title}" press="onResetFilters"/>
+			<Button id="cancelButton" text="{i18n>cancel_title}" press="onCloseCycleSearch"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

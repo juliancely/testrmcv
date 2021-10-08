@@ -1,0 +1,425 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL_SM')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CORE',Version='0001',SAP__Origin='LOCAL_SM')/$value">
+        <edmx:Include Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL_SM')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1"/>
+    </edmx:Reference>
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL_SM')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZSM_RM_COCKPIT_V2_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="ActionReturn" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="guid"/>
+                </Key>
+                <Property Name="guid" Type="Edm.String" Nullable="false"/>
+                <Property Name="updated" Type="Edm.Boolean" Nullable="false" sap:label="Indicator"/>
+                <Property Name="error_txt" Type="Edm.String" Nullable="false"/>
+                <Property Name="reason_txt" Type="Edm.String" Nullable="false"/>
+                <Property Name="url" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="ChangeCycle" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false"/>
+                <Property Name="TYPE" Type="Edm.String" Nullable="false"/>
+                <Property Name="PHASE" Type="Edm.String" Nullable="false"/>
+                <Property Name="DESC" Type="Edm.String" Nullable="false"/>
+                <Property Name="FAV" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="ChangeDocument" sap:semantics="aggregate" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Guid"/>
+                </Key>
+                <Property Name="Guid" Type="Edm.Guid" Nullable="false" sap:aggregation-role="dimension" sap:label="Object GUID"/>
+                <Property Name="Total" Type="Edm.Byte" Nullable="false" sap:aggregation-role="measure" sap:label="Total"/>
+                <Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="10" sap:aggregation-role="dimension" sap:label="Transaction No."/>
+                <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="40" sap:aggregation-role="dimension" sap:label="Description"/>
+                <Property Name="ProcessType" Type="Edm.String" Nullable="false" MaxLength="10" sap:aggregation-role="dimension" sap:label="Transaction Type"/>
+                <Property Name="ChangeType" Type="Edm.String" Nullable="false" MaxLength="20" sap:aggregation-role="dimension" sap:label="Short Description"/>
+                <Property Name="TransStatus" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="Transport Status"/>
+                <Property Name="Tasklist" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="Tasklist"/>
+                <Property Name="Doctype" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="Document Type"/>
+                <Property Name="Stsma" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="Status Schema"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="Status Code"/>
+                <Property Name="StatusTxt" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="Status Description"/>
+                <Property Name="RelStatus" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="Substatus Code"/>
+                <Property Name="RelstatTxt" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="Substatus Description"/>
+                <Property Name="CreatedAt" Type="Edm.String" Nullable="false" MaxLength="21" sap:aggregation-role="dimension" sap:label="Created At"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="Created By"/>
+                <Property Name="ChangedAt" Type="Edm.String" Nullable="false" MaxLength="21" sap:aggregation-role="dimension" sap:label="Changed At"/>
+                <Property Name="ChangedBy" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="Changed By"/>
+                <Property Name="ExtRefNo" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="External Ref No"/>
+                <Property Name="Categ1Id" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="Category 1 ID"/>
+                <Property Name="Categ1Label" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="Category 1 Label"/>
+                <Property Name="Categ2Id" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="Category 2 ID"/>
+                <Property Name="Categ2Label" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="Category 2 Label"/>
+                <Property Name="Categ3Id" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="Category 3 ID"/>
+                <Property Name="Categ3Label" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="Category 3 Label"/>
+                <Property Name="Categ4Id" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="Category 4 ID"/>
+                <Property Name="Categ4Label" Type="Edm.String" Nullable="false" sap:aggregation-role="dimension" sap:label="Category 4 Label"/>
+            </EntityType>
+            <EntityType Name="JobInfos" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Jobname"/>
+                    <PropertyRef Name="Jobcount"/>
+                </Key>
+                <Property Name="Jobname" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="Job name"/>
+                <Property Name="Jobcount" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Job No."/>
+                <Property Name="Jobgroup" Type="Edm.String" MaxLength="12" sap:label="Job group"/>
+                <Property Name="Intreport" Type="Edm.String" MaxLength="40" sap:label="Report"/>
+                <Property Name="Stepcount" Type="Edm.Int32" sap:label="Step no."/>
+                <Property Name="Sdlstrtdt" Type="Edm.DateTime" Precision="7" sap:label="Start date"/>
+                <Property Name="Sdlstrttm" Type="Edm.Time" Precision="0" sap:label="Start time"/>
+                <Property Name="Btcsystem" Type="Edm.String" MaxLength="32" sap:label="Tgt System for Job"/>
+                <Property Name="Sdldate" Type="Edm.DateTime" Precision="7" sap:label="Schedule date"/>
+                <Property Name="Sdltime" Type="Edm.Time" Precision="0" sap:label="Schedule date"/>
+                <Property Name="Sdluname" Type="Edm.String" MaxLength="12" sap:label="Job scheduler"/>
+                <Property Name="Lastchdate" Type="Edm.DateTime" Precision="7" sap:label="Last job change"/>
+                <Property Name="Lastchtime" Type="Edm.Time" Precision="0" sap:label="Last job change"/>
+                <Property Name="Lastchname" Type="Edm.String" MaxLength="12" sap:label="Last job change by"/>
+                <Property Name="Reldate" Type="Edm.DateTime" Precision="7" sap:label="Scheduled release"/>
+                <Property Name="Reltime" Type="Edm.Time" Precision="0" sap:label="Scheduled release"/>
+                <Property Name="Reluname" Type="Edm.String" MaxLength="12" sap:label="User that released scheduled batch job"/>
+                <Property Name="Strtdate" Type="Edm.DateTime" Precision="7" sap:label="Start date"/>
+                <Property Name="Strttime" Type="Edm.Time" Precision="0" sap:label="Start time"/>
+                <Property Name="Enddate" Type="Edm.DateTime" Precision="7" sap:label="Start date"/>
+                <Property Name="Endtime" Type="Edm.Time" Precision="0" sap:label="Start time"/>
+                <Property Name="Prdmins" Type="Edm.String" MaxLength="2" sap:label="Periodic job"/>
+                <Property Name="Prdhours" Type="Edm.String" MaxLength="2" sap:label="Periodic job"/>
+                <Property Name="Prddays" Type="Edm.String" MaxLength="3" sap:label="Periodic job"/>
+                <Property Name="Prdweeks" Type="Edm.String" MaxLength="2" sap:label="Periodic job"/>
+                <Property Name="Prdmonths" Type="Edm.String" MaxLength="2" sap:label="Periodic job"/>
+                <Property Name="Periodic" Type="Edm.String" MaxLength="1" sap:label="Periodic job"/>
+                <Property Name="Delanfrep" Type="Edm.String" MaxLength="1" sap:label="Delete Job"/>
+                <Property Name="Emergmode" Type="Edm.String" MaxLength="1" sap:label="Emergency"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="1" sap:label="Job status"/>
+                <Property Name="Newflag" Type="Edm.String" MaxLength="1" sap:label="New job ID"/>
+                <Property Name="Authcknam" Type="Edm.String" MaxLength="12" sap:label="Background User"/>
+                <Property Name="Authckman" Type="Edm.String" MaxLength="3" sap:label="Authorization check"/>
+                <Property Name="Succnum" Type="Edm.Int32" sap:label="Successor job"/>
+                <Property Name="Prednum" Type="Edm.Int32" sap:label="Previous job"/>
+                <Property Name="Joblog" Type="Edm.String" MaxLength="20" sap:label="Name"/>
+                <Property Name="Laststrtdt" Type="Edm.DateTime" Precision="7" sap:label="Latest Date"/>
+                <Property Name="Laststrttm" Type="Edm.Time" Precision="0" sap:label="Latest Time"/>
+                <Property Name="Wpnumber" Type="Edm.Int32" sap:label="Work process no"/>
+                <Property Name="Wpprocid" Type="Edm.Int32" sap:label="Work process ID"/>
+                <Property Name="Eventid" Type="Edm.String" MaxLength="32" sap:label="Event"/>
+                <Property Name="Eventparm" Type="Edm.String" MaxLength="64" sap:label="Bkgd Evt Parameters"/>
+                <Property Name="Btcsysreax" Type="Edm.String" MaxLength="32" sap:label="Tgt System for Job"/>
+                <Property Name="Jobclass" Type="Edm.String" MaxLength="1" sap:label="Job class"/>
+                <Property Name="Priority" Type="Edm.Int32" sap:label="Job priority"/>
+                <Property Name="Eventcount" Type="Edm.String" MaxLength="8" sap:label="Event number"/>
+                <Property Name="Checkstat" Type="Edm.String" MaxLength="1" sap:label="Job status check"/>
+                <Property Name="Calendarid" Type="Edm.String" MaxLength="2" sap:label="Factory cal."/>
+                <Property Name="Prdbehav" Type="Edm.String" MaxLength="1" sap:label="Behavior"/>
+                <Property Name="Execserver" Type="Edm.String" MaxLength="20" sap:label="ServerName"/>
+                <Property Name="Eomcorrect" Type="Edm.Int32" sap:label="Correction job exec."/>
+                <Property Name="Calcorrect" Type="Edm.Int32" sap:label="Correction job exec."/>
+                <Property Name="Reaxserver" Type="Edm.String" MaxLength="20" sap:label="ServerName"/>
+                <Property Name="Reclogsys" Type="Edm.String" MaxLength="10" sap:label="Logical system"/>
+                <Property Name="Recobjtype" Type="Edm.String" MaxLength="10" sap:label="Object Type"/>
+                <Property Name="Recobjkey" Type="Edm.String" MaxLength="70" sap:label="Key"/>
+                <Property Name="Recdescrib" Type="Edm.String" MaxLength="10" sap:label="Describe flag"/>
+                <Property Name="Tgtsrvgrp" Type="Edm.String" MaxLength="40" sap:label="Server Group Name"/>
+                <Property Name="Link" Type="Edm.String" sap:label="Data"/>
+            </EntityType>
+            <EntityType Name="LoginReturn" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="userName"/>
+                </Key>
+                <Property Name="userName" Type="Edm.String" Nullable="false"/>
+                <Property Name="firstName" Type="Edm.String" Nullable="false"/>
+                <Property Name="lastName" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="TransportOrder" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Tasklist"/>
+                    <PropertyRef Name="TrorderNumber"/>
+                </Key>
+                <Property Name="Tasklist" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Task List"/>
+                <Property Name="TrorderNumber" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Request/Task"/>
+                <Property Name="TrText" Type="Edm.String" MaxLength="60" sap:label="Text"/>
+                <Property Name="CtsId" Type="Edm.String" MaxLength="32" sap:label="CTS ID"/>
+                <Property Name="TransportTrack" Type="Edm.String" MaxLength="8" sap:label="Transport Track"/>
+                <Property Name="TrorderSystem" Type="Edm.String" MaxLength="10" sap:label="Source System"/>
+                <Property Name="TrorderClient" Type="Edm.String" MaxLength="3" sap:label="Source Client"/>
+                <Property Name="RespUser" Type="Edm.String" MaxLength="12" sap:label="User Name"/>
+                <Property Name="CreatedDate" Type="Edm.DateTime" Precision="7" sap:label="Created On"/>
+                <Property Name="CreatedTime" Type="Edm.Time" Precision="0" sap:label="Creation Time"/>
+                <Property Name="ReleasedDate" Type="Edm.DateTime" Precision="7" sap:label="Release Date"/>
+                <Property Name="ReleasedTime" Type="Edm.Time" Precision="0" sap:label="Release Time"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="4" sap:label="Export Status"/>
+                <Property Name="Trfunction" Type="Edm.String" MaxLength="1" sap:label="Type"/>
+                <Property Name="Originator" Type="Edm.String" MaxLength="1" sap:label="Creator"/>
+                <Property Name="OriginatorId" Type="Edm.String" MaxLength="32" sap:label="ID of Creator"/>
+                <Property Name="OriginatorKey" Type="Edm.String" MaxLength="32" sap:label="Change Process"/>
+                <Property Name="TrorderCopy" Type="Edm.String" MaxLength="20" sap:label="Request/Task"/>
+                <Property Name="ProjectName" Type="Edm.String" MaxLength="32" sap:label="Project"/>
+                <Property Name="Target" Type="Edm.String" MaxLength="10" sap:label="Transport Target"/>
+                <Property Name="SysName" Type="Edm.String" MaxLength="8" sap:label="Ext. System ID"/>
+                <Property Name="SysType" Type="Edm.String" MaxLength="16" sap:label="TS Type"/>
+                <Property Name="SmiProject" Type="Edm.String" MaxLength="10" sap:label="Cycle"/>
+            </EntityType>
+            <EntityType Name="ChangeCyclePhase" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="KEY"/>
+                </Key>
+                <Property Name="KEY" Type="Edm.String" Nullable="false"/>
+                <Property Name="TEXT" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="LogDetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Guid"/>
+                    <PropertyRef Name="JobId"/>
+                    <PropertyRef Name="ObjectId"/>
+                    <PropertyRef Name="Timestamp"/>
+                    <PropertyRef Name="MsgType"/>
+                    <PropertyRef Name="Logs"/>
+                </Key>
+                <Property Name="Guid" Type="Edm.Guid" Nullable="false" sap:label="Object GUID"/>
+                <Property Name="JobId" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Char"/>
+                <Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="ID"/>
+                <Property Name="Timestamp" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Time Stamp"/>
+                <Property Name="MsgType" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Message Type"/>
+                <Property Name="Logs" Type="Edm.String" Nullable="false" MaxLength="100" sap:label="Text"/>
+            </EntityType>
+            <EntityType Name="DebugLogDetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Guid"/>
+                    <PropertyRef Name="ObjectId"/>
+                    <PropertyRef Name="Timestamp"/>
+                    <PropertyRef Name="Logs"/>
+                </Key>
+                <Property Name="Guid" Type="Edm.Guid" Nullable="false" sap:label="UUID"/>
+                <Property Name="ObjectId" Type="Edm.String" Nullable="false"/>
+                <Property Name="Timestamp" Type="Edm.String" Nullable="false" MaxLength="14" sap:label="ABAP Time Stamp"/>
+                <Property Name="Logs" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZSM_RM_COCKPIT_V2_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ActionReturnSet" EntityType="ZSM_RM_COCKPIT_V2_SRV.ActionReturn" sap:content-version="1"/>
+                <EntitySet Name="ChangeCycleSet" EntityType="ZSM_RM_COCKPIT_V2_SRV.ChangeCycle" sap:content-version="1"/>
+                <EntitySet Name="ChangeDocumentSet" EntityType="ZSM_RM_COCKPIT_V2_SRV.ChangeDocument" sap:content-version="1"/>
+                <EntitySet Name="JobInfosSet" EntityType="ZSM_RM_COCKPIT_V2_SRV.JobInfos" sap:content-version="1"/>
+                <EntitySet Name="LoginReturnCollection" EntityType="ZSM_RM_COCKPIT_V2_SRV.LoginReturn" sap:content-version="1"/>
+                <EntitySet Name="TransportOrderSet" EntityType="ZSM_RM_COCKPIT_V2_SRV.TransportOrder" sap:content-version="1"/>
+                <EntitySet Name="ChangeCyclePhaseSet" EntityType="ZSM_RM_COCKPIT_V2_SRV.ChangeCyclePhase" sap:content-version="1"/>
+                <EntitySet Name="LogDetailsSet" EntityType="ZSM_RM_COCKPIT_V2_SRV.LogDetails" sap:content-version="1"/>
+                <EntitySet Name="DebugLogDetailsSet" EntityType="ZSM_RM_COCKPIT_V2_SRV.DebugLogDetails" sap:content-version="1"/>
+                <FunctionImport Name="AddComments" ReturnType="Collection(ZSM_RM_COCKPIT_V2_SRV.ActionReturn)" EntitySet="ActionReturnSet" m:HttpMethod="GET">
+                    <Parameter Name="guids" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="text" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="Approve" ReturnType="Collection(ZSM_RM_COCKPIT_V2_SRV.ActionReturn)" EntitySet="ActionReturnSet" m:HttpMethod="GET">
+                    <Parameter Name="guids" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="Candidate" ReturnType="Collection(ZSM_RM_COCKPIT_V2_SRV.ActionReturn)" EntitySet="ActionReturnSet" m:HttpMethod="GET">
+                    <Parameter Name="guids" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="Close" ReturnType="Collection(ZSM_RM_COCKPIT_V2_SRV.ActionReturn)" EntitySet="ActionReturnSet" m:HttpMethod="GET">
+                    <Parameter Name="date" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="immediate" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="release" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="search" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="time" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="Ticket" ReturnType="ZSM_RM_COCKPIT_V2_SRV.ActionReturn" EntitySet="ActionReturnSet" m:HttpMethod="GET">
+                    <Parameter Name="search" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="GetJobInfos" ReturnType="Collection(ZSM_RM_COCKPIT_V2_SRV.JobInfos)" EntitySet="JobInfosSet" m:HttpMethod="GET">
+                    <Parameter Name="search" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="Login" ReturnType="ZSM_RM_COCKPIT_V2_SRV.LoginReturn" EntitySet="LoginReturnCollection" m:HttpMethod="GET"/>
+                <FunctionImport Name="Postpone" ReturnType="Collection(ZSM_RM_COCKPIT_V2_SRV.ActionReturn)" EntitySet="ActionReturnSet" m:HttpMethod="GET">
+                    <Parameter Name="guids" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="text" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="Release" ReturnType="Collection(ZSM_RM_COCKPIT_V2_SRV.ActionReturn)" EntitySet="ActionReturnSet" m:HttpMethod="GET">
+                    <Parameter Name="date" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="immediate" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="release" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="search" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="time" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="Shift" ReturnType="Collection(ZSM_RM_COCKPIT_V2_SRV.ActionReturn)" EntitySet="ActionReturnSet" m:HttpMethod="GET">
+                    <Parameter Name="guids" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="Tasklist" ReturnType="ZSM_RM_COCKPIT_V2_SRV.ActionReturn" EntitySet="ActionReturnSet" m:HttpMethod="GET">
+                    <Parameter Name="search" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="createShorcut" ReturnType="ZSM_RM_COCKPIT_V2_SRV.ActionReturn" EntitySet="ActionReturnSet" m:HttpMethod="GET">
+                    <Parameter Name="search" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="SendEmail" ReturnType="ZSM_RM_COCKPIT_V2_SRV.ActionReturn" EntitySet="ActionReturnSet" m:HttpMethod="GET">
+                    <Parameter Name="body" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="subject" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="AddFavorites" ReturnType="ZSM_RM_COCKPIT_V2_SRV.ActionReturn" EntitySet="ActionReturnSet" m:HttpMethod="GET">
+                    <Parameter Name="search" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="SynchroTr" ReturnType="ZSM_RM_COCKPIT_V2_SRV.ActionReturn" EntitySet="ActionReturnSet" m:HttpMethod="GET">
+                    <Parameter Name="search" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="RefreshTr" ReturnType="ZSM_RM_COCKPIT_V2_SRV.ActionReturn" EntitySet="ActionReturnSet" m:HttpMethod="GET"/>
+                <FunctionImport Name="SwitchChange" ReturnType="Collection(ZSM_RM_COCKPIT_V2_SRV.ActionReturn)" EntitySet="ActionReturnSet" m:HttpMethod="GET">
+                    <Parameter Name="guids" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+            </EntityContainer>
+            <Annotations
+                xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZSM_RM_COCKPIT_V2_SRV.ChangeDocument">
+                <Annotation Term="com.sap.vocabularies.UI.v1.LineItem">
+                    <Collection>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Guid"/>
+                            <PropertyValue Property="Value" Path="Guid"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Transaction Id"/>
+                            <PropertyValue Property="Value" Path="ObjectId"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Description"/>
+                            <PropertyValue Property="Value" Path="Description"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Status"/>
+                            <PropertyValue Property="Value" Path="StatusTxt"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Sub Status"/>
+                            <PropertyValue Property="Value" Path="RelstatTxt"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Imported In"/>
+                            <PropertyValue Property="Value" Path="TransStatus"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Created At"/>
+                            <PropertyValue Property="Value" Path="CreatedAt"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Created By"/>
+                            <PropertyValue Property="Value" Path="CreatedBy"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Changed At"/>
+                            <PropertyValue Property="Value" Path="ChangedAt"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Changed By"/>
+                            <PropertyValue Property="Value" Path="ChangedBy"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="External Ref No"/>
+                            <PropertyValue Property="Value" Path="ExtRefNo"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Change Type"/>
+                            <PropertyValue Property="Value" Path="ChangeType"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations
+                xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZSM_RM_COCKPIT_V2_SRV.LogDetails">
+                <Annotation Term="com.sap.vocabularies.UI.v1.LineItem">
+                    <Collection>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Object ID"/>
+                            <PropertyValue Property="Value" Path="ObjectId"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Timestamp"/>
+                            <PropertyValue Property="Value" Path="Timestamp"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Message Type"/>
+                            <PropertyValue Property="Value" Path="MsgType"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Guid"/>
+                            <PropertyValue Property="Value" Path="Guid"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Logs"/>
+                            <PropertyValue Property="Value" Path="Logs"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations
+                xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZSM_RM_COCKPIT_V2_SRV.DebugLogDetails">
+                <Annotation Term="com.sap.vocabularies.UI.v1.LineItem">
+                    <Collection>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Object Id"/>
+                            <PropertyValue Property="Value" Path="ObjectId"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Timestamp"/>
+                            <PropertyValue Property="Value" Path="Timestamp"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Property="Label" String="Logs"/>
+                            <PropertyValue Property="Value" Path="Logs"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations
+                xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZSM_RM_COCKPIT_V2_SRV.ChangeDocument">
+                <Annotation Term="com.sap.vocabularies.UI.v1.Chart">
+                    <Record Type="com.sap.vocabularies.UI.v1.ChartDefinitionType">
+                        <PropertyValue Property="Title" String="Release Management Cockpit"/>
+                        <PropertyValue Property="Description" String="Reporting"/>
+                        <PropertyValue Property="ChartType" EnumMember="Column"/>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>Total</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record Type="com.sap.vocabularies.UI.v1.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure" PropertyPath="Total"/>
+                                    <PropertyValue Property="Role" EnumMember="Axis1"/>
+                                    <PropertyValue Property="Dimensions">
+                                        <Collection>
+                                            <PropertyPath>Status</PropertyPath>
+                                        </Collection>
+                                    </PropertyValue>
+                                    <PropertyValue Property="DimensionAttributes">
+                                        <Collection>
+                                            <Record Type="com.sap.vocabularies.UI.v1.ChartDimensionAttributeType">
+                                                <PropertyValue Property="Dimension" PropertyPath="Status"/>
+                                                <PropertyValue Property="Role" EnumMember="Series"/>
+                                            </Record>
+                                        </Collection>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZSM_RM_COCKPIT_V2_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZSM_RM_COCKPIT_V2_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>
